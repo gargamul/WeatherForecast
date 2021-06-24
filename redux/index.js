@@ -21,7 +21,7 @@ export const getWeatherInfo = (city) => {
             dispatch({type: 'SET_SUNSET', payload: response.data.sys.sunset});
 
         } catch (error) {
-            dispatch({ type: 'ON_ERROR', payload: error });
+            dispatch({ type: 'ON_ERROR', payload: error.response.data.message });
         }
     }
 }
@@ -34,6 +34,7 @@ const initialState = {
     sunset: '',
     timezone: ''
 };
+
 //reducers
 
 const weatherDashboardReducer = (state = initialState, action) => {
@@ -85,9 +86,9 @@ export const store = createStore(weatherDashboardReducer, applyMiddleware(thunk)
 
 // helper function
 const formatDateTime = (dt, timezone) => {
-    return moment(dt*1000).utc().utcOffset(timezone/60).format('h:mm:ss a');
+    return moment(dt*1000).utc().utcOffset(timezone/60).format('h:mm a');
 }
 
 const convertToFahrenheit = (temp) => {
-    return temp * 9 / 5 + 32;
+    return (temp * 9 / 5 + 32).toFixed(2);
 }

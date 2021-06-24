@@ -8,24 +8,37 @@ const Location = () => {
     const [city, setCity] = useState('');
 
     return (
-        <View>
-            <Text>My City</Text>
+        <View  style={LocationStyles.container}>
+            <Text style={LocationStyles.text}>My Location</Text>
             <TextInput
+                autoCorrect={false}
                 blurOnSubmit={true}
                 onChangeText={city => setCity(city)}
                 onSubmitEditing={() => {
                     dispatch(getWeatherInfo(city))
                 }}
+                style={LocationStyles.textInput}
             >
             </TextInput>
         </View>
     )
 };
 
-//
-// const styles = StyleSheet.create({
-//     container: { flex: 1, justifyContent: 'center', alignItems: 'center'}
-// })
+const LocationStyles = StyleSheet.create({
+    container: {
+        flexDirection: "row",
+        alignItems: "center"
+    },
+    text: {
+        flex: 1,
+    },
+    textInput: {
+        flex: 1,
+        borderColor: 'black',
+        borderStyle: 'solid',
+        borderWidth: 1
 
+    }
+})
 
 export default Location;

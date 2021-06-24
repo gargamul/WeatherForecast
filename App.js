@@ -10,23 +10,30 @@ import {Dashboard} from "./components/Dashboard";
 const App = () =>  {
     return (
         <Provider store={store}>
-            <View style={styles.container}>
-                <Text>Weather Forecast</Text>
-                <Location/>
-                <Dashboard/>
+            <View style={AppStyles.root}>
+                <Text style={AppStyles.title}>Weather Forecast POC</Text>
+                <Location style={AppStyles.rowContainer}/>
+                <Dashboard style={AppStyles.rowContainer}/>
                 <StatusBar style="auto" />
             </View>
         </Provider>
     );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  }
-});
+const AppStyles = StyleSheet.create({
+    root: {
+        flex: 1,
+        flexDirection: "column",
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    title: {
+        margin: 40,
+        fontSize: 20
+    },
+    rowContainer: {
+    },
+})
+
 
 export default App;
